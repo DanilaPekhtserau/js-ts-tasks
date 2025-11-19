@@ -9,5 +9,15 @@
  * @returns {number}
  */
 module.exports.maxCommonSub = function maxCommonSub(str1, str2) {
-  throw new Error('Not implemented'); // remove me and write a solution
+  let result = '';
+  for (let i = 0; i < str1.length; i++) {
+    for (let j = i + 1; j <= str1.length; j++) {
+      let sub = str1.slice(i, j);      
+      if (str2.includes(sub) && sub.length > result.length) {
+        result = sub;
+      }
+    }
+  }
+  
+  return result;
 };
