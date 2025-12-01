@@ -14,5 +14,33 @@
  * @returns {function}
  */
 module.exports.censorship = function censorship(forbidden) {
-  throw new Error('Not implemented'); // remove me and write a solution
-};
+  return function(str) {
+    
+    let result = str
+    const sorted = forbidden.slice().sort((a, b) => b.length - a.length)
+    
+    for (let i = 0; i < sorted.length; i++) {
+      const word = sorted[i]
+      let temp = ''
+      let j = 0
+      
+      while (j < result.length) {
+        const sub = result.substr(j, word.length)
+        
+        if (sub.toLowerCase() === word.toLowerCase()) {
+          for (let k = 0; k < word.length; k++) {
+            temp += '*'
+          }
+          j += word.length
+        } else {
+          temp += result[j]
+          j++
+        }
+      }
+      
+      result = temp
+    }
+    
+    return result
+  }
+}

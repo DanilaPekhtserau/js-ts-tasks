@@ -9,5 +9,28 @@
  * @returns {function}
  */
 module.exports.formatAddressWithOrder = function formatAddressWithOrder(order) {
-  throw new Error('Not implemented'); // remove me and write a solution
-};
+  return function(addressData) {
+    if (!addressData || !order) {
+      return ''
+    }
+    
+    const parts = []
+    
+    for (let i = 0; i < order.length; i++) {
+      const value = addressData[order[i]]
+      if (value !== undefined && value !== null && value !== '') {
+        parts.push(value)
+      }
+    }
+    
+    let result = ''
+    for (let i = 0; i < parts.length; i++) {
+      result += parts[i]
+      if (i !== parts.length - 1) {
+        result += ', '
+      }
+    }
+    
+    return result
+  }
+}
