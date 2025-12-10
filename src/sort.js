@@ -9,5 +9,14 @@
  * @returns {function}
  */
 module.exports.sort = function sort(TestUtils) {
-  throw new Error('Not implemented'); // remove this line and create your solution
-};
+  return function() {
+    const arr = []
+    for (let i = 0; i < arguments.length; i++) {
+      arr[i] = arguments[i]
+    }
+    
+    return arr.sort(function(a, b) {
+      return TestUtils.sortComparator(a, b);
+    })
+  }
+}

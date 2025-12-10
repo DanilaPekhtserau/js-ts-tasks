@@ -13,5 +13,15 @@
  * @returns {function}
  */
 module.exports.palindrome = function palindrome(TestUtils) {
-  throw new Error('Not implemented'); // remove this line and create your solution
-};
+  return function (s) {
+    let res = ''
+    for (let i = 0; i < s.length; i++) {
+      const char = s[i].toLowerCase()
+      if ((char >= '0' && char <= '9') || (char >= 'a' && char <= 'z')) {
+        res += char
+      }
+    }
+
+    return TestUtils.isPalindrome.call({ str: res })
+  }
+}
